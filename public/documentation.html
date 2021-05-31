@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="/styles.css">
     <title>Movie API</title>
   </head>
   <body>
@@ -14,5 +15,85 @@
       movies, directors, and genres. Users will be able to sign up, update their
       personal information, and create a list of their favorite movies
     </p>
+   <div class="table-wrapper">
+    <table class="methods-table">
+      <tr>
+        <th>REQUEST</th>
+        <th>URL</th>
+        <th>HTTP METHOD</th>
+        <th>Response</th>
+      </tr>
+      <tr>
+        <td>Get a list of movies</td>
+        <td>/movies</td>
+        <td>GET</td>
+        <td>Return a list of ALL movies to the user</td>
+      </tr>
+      <tr>
+        <td>Get data about a single movie by title to the user</td>
+        <td>/movies/[ID]</td>
+        <td>GET</td>
+        <td>
+          Return data (description, genre, director, image URL, whether it’s
+          featured or not) about a single movie by title to the user
+        </td>
+      </tr>
+
+      <tr>
+        <td>Get data about a genre (description) by name/title</td>
+        <td>/movies/genre/name</td>
+        <td>GET</td>
+        <td>
+          Return data about a genre (description) by name/title (e.g.,
+          “Thriller”)
+        </td>
+      </tr>
+
+      <tr>
+        <td>Get data about a director</td>
+        <td>/movies/director/name</td>
+        <td>GET</td>
+        <td>
+          Return data about a director (bio, birth year, death year) by name
+        </td>
+      </tr>
+
+      <tr>
+        <td>Register new User</td>
+        <td>/user</td>
+        <td>POST</td>
+        <td>Allow new users to register</td>
+      </tr>
+
+      <tr>
+        <td>Allow users to update their user info</td>
+        <td>/user/username</td>
+        <td>PUT</td>
+        <td>Allow users to update their user info (username)</td>
+      </tr>
+
+      <tr>
+        <td>Add to favorites</td>
+        <td>/user/[username]/movie/[movieID]</td>
+        <td>POST</td>
+        <td>
+          Allow users to add a movie to their list of favorites (showing only a
+          text that a movie has been added—more on this later)
+        </td>
+      </tr>
+      <tr>
+        <td>Remove from Favorites</td>
+        <td>/user/[username]/movie/[movieID]</td>
+        <td>DELETE</td>
+        <td>Removes a movie from the users favorites list</td>
+      </tr>
+      <tr>
+        <td>Remove User</td>
+        <td>/user/[username]</td>
+        <td>DELETE</td>
+        <td>Remove User</td>
+      </tr>
+    </table>
+  </div>
   </body>
 </html>
