@@ -18,7 +18,7 @@ const { check, validationResult } = require("express-validator");
 });
 });*/
 //mongoose.connect("mongodb+srv://dbadmin:testpassword@cluster0.s66pe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect("mongodb+srv://dbadmin:testpassword@cluster0.s66pe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true 
+mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true 
 }).then(() => console.log('mongoDB connected...'));
 
 /*mongoose.connect(process.env.CONNECTION_URI, {
@@ -203,7 +203,6 @@ app.post(
 //Get all users
 app.get(
   "/usersall",
-  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     console.log("in get users");
     Users.find()
