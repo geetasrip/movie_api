@@ -18,7 +18,7 @@ const { check, validationResult } = require("express-validator");
 });
 });*/
 //mongoose.connect("mongodb+srv://dbadmin:testpassword@cluster0.s66pe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true 
+mongoose.connect("mongodb+srv://dbadmin:testpassword@cluster0.s66pe.mongodb.net/dbadmin?retryWrites=true&w=majority retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true 
 }).then(() => console.log('mongoDB connected...'));
 
 /*mongoose.connect(process.env.CONNECTION_URI, {
