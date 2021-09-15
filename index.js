@@ -17,8 +17,9 @@ const { check, validationResult } = require("express-validator");
   useUnifiedTopology: true
 });
 });*/
-
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect("mongodb+srv://dbadmin:testpassword@cluster0.s66pe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://dbadmin:testpassword@cluster0.s66pe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true 
+}).then(() => console.log('mongoDB connected...'));
 
 /*mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
@@ -52,7 +53,6 @@ app.get("/documentation", (req, res) => {
 //GET all movies
 app.get(
   "/movies",
-  passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.find()
       .then(movies => {
