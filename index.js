@@ -17,9 +17,12 @@ const { check, validationResult } = require("express-validator");
   useUnifiedTopology: true
 });
 });*/
-//mongoose.connect("mongodb+srv://dbadmin:testpassword@cluster0.s66pe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true 
-}).then(() => console.log('mongoDB connected...'));
+mongoose.connect(
+  "mongodb+srv://dbadmin:testpassword@cluster0.s66pe.mongodb.net/dbadmin?retryWrites=true retryWrites=true&w=majority",
+  { useNewUrlParser: true, useUnifiedTopology: true }
+);
+//mongoose.connect(process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true
+//}).then(() => console.log('mongoDB connected...'));
 
 /*mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
@@ -51,20 +54,16 @@ app.get("/documentation", (req, res) => {
 });
 
 //GET all movies
-app.get(
-  "/movies",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    Movies.find()
-      .then(movies => {
-        res.status(201).json(movies);
-      })
-      .catch(err => {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      });
-  }
-);
+app.get("/movies", (req, res) => {
+  Movies.find()
+    .then(movies => {
+      res.status(201).json(movies);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
+});
 
 // GET movies by title
 app.get(
@@ -202,22 +201,19 @@ app.post(
 );
 
 //Get all users
-app.get(
-  "/usersall",
-  (req, res) => {
-    console.log("in get users");
-    Users.find()
-      .then(users => {
-        console.log("users");
-        console.log(users);
-        res.status(201).json(users);
-      })
-      .catch(err => {
-        console.error(err);
-        res.status(500).send("Error: " + err);
-      });
-  }
-);
+app.get("/usersall", (req, res) => {
+  console.log("in get users");
+  Users.find()
+    .then(users => {
+      console.log("users");
+      console.log(users);
+      res.status(201).json(users);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).send("Error: " + err);
+    });
+});
 
 //Get a user by username
 app.get(
