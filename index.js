@@ -55,6 +55,7 @@ app.get("/documentation", (req, res) => {
 
 //GET all movies
 app.get("/movies", (req, res) => {
+  console.log("movies call");
   Movies.find()
     .then(movies => {
       res.status(201).json(movies);
