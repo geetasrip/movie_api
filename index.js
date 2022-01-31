@@ -40,6 +40,9 @@ app.use(cors());
 let auth = require("./auth")(app);
 const passport = require("passport");
 require("./passport");
+const jwtSecret = "your_jwt_secret"; // This has to be the same key used in the JWTStrategy
+
+const jwt = require("jsonwebtoken"),
 
 let generateJWTToken = user => {
   return jwt.sign(user, jwtSecret, {
