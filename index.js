@@ -185,7 +185,8 @@ app.post(
             Birthday: req.body.Birthday
           })
             .then(user => {
-              res.status(201).json(user);
+              let token = generateJWTToken(user.toJSON());
+              res.status(201).json(user, token);
             })
             .catch(error => {
               console.error(error);
