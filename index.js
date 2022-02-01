@@ -36,6 +36,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require("cors");
+
+const whitelist = ["http://localhost:1234"];
+const corsOptions = {
+  origin: function(origin, callback) {
+    if (!origin || whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
+};
+app.use(cors(corsOptions));
+
 let auth = require("./auth")(app);
 const passport = require("passport");
 
@@ -71,19 +85,6 @@ let allowedOrigins = ["http://localhost:1234"];
 console.log(allowedOrigins);
 console.log("cors test");
 console.log(cors);
-
-const whitelist = ["http://localhost:1234"];
-const corsOptions = {
-  origin: function(origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-};
-app.use(cors(corsOptions));
 
 console.log(whitelist);
 console.log("cors test");
