@@ -206,9 +206,11 @@ app.post(
     Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
       .then(user => {
         if (user) {
+          console.log("user found");
           //If the user is found, send a response that it already exists
           return res.status(400).send(req.body.Username + " already exists");
         } else {
+          console.log("user not found");
           Users.create({
             Username: req.body.Username,
             Password: hashedPassword,
@@ -216,16 +218,19 @@ app.post(
             Birthday: req.body.Birthday
           })
             .then(user => {
+              console.log("user created generating token");
               let token = generateJWTToken(user.toJSON());
               return res.json({ user, token });
             })
             .catch(error => {
+              console.log("user not created Error1");
               console.error(error);
               res.status(500).send("Error: " + error);
             });
         }
       })
       .catch(error => {
+        console.log("user not created Error2");
         console.error(error);
         res.status(500).send("Error: " + error);
       });
