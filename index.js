@@ -36,12 +36,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require("cors");
-app.use(cors());
 let auth = require("./auth")(app);
 const passport = require("passport");
 
-const jwt = require("jsonwebtoken"),
-  passport = require("passport");
+const jwt = require("jsonwebtoken");
 const jwtSecret = "your_jwt_secret"; // This has to be the same key used in the JWTStrategy
 
 let generateJWTToken = user => {
@@ -51,6 +49,14 @@ let generateJWTToken = user => {
     algorithm: "HS256" // This is the algorithm used to “sign” or encode the values of the JWT
   });
 };
+
+const corsOptions = {
+  origin: "*",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200
+};
+
+app.use(cors(corsOptions)); // Use this after the variable declaration
 
 //GET requests
 app.get("/", (req, res) => {
