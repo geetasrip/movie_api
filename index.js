@@ -64,48 +64,6 @@ let generateJWTToken = user => {
   });
 };
 
-// const corsOptions = {
-//   origin: "*",
-//   credentials: true, //access-control-allow-credentials:true
-//   optionSuccessStatus: 200
-// };
-
-// app.use(cors(corsOptions)); // Use this after the variable declaration
-
-// app.use(function(req, res, next) {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// });
-
-let allowedOrigins = ["http://localhost:1234"];
-console.log(allowedOrigins);
-console.log("cors test");
-console.log(cors);
-
-console.log(whitelist);
-console.log("cors test");
-console.log(corsOptions);
-
-// app.use(
-//   cors({
-//     origin: (origin, callback) => {
-//       if (!origin) return callback(null, true);
-//       if (allowedOrigins.indexOf(origin) === -1) {
-//         // If a specific origin isn’t found on the list of allowed origins
-//         let message =
-//           "The CORS policy for this application doesn’t allow access from origin " +
-//           origin;
-//         return callback(new Error(message), false);
-//       }
-//       return callback(null, true);
-//     }
-//   })
-// );
-
 //GET requests
 
 app.all("/*", function(req, res, next) {
@@ -259,7 +217,7 @@ app.post(
           })
             .then(user => {
               let token = generateJWTToken(user.toJSON());
-              res.status(201).json(user, token);
+              return res.json({ user, token });
             })
             .catch(error => {
               console.error(error);
