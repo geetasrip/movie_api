@@ -59,20 +59,18 @@ const corsOptions = {
 app.use(cors(corsOptions)); // Use this after the variable declaration
 
 app.use(function(req, res, next) {
-  res.setHeader(
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
     "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type, Accept,Authorization,Origin"
+    "Origin, X-Requested-With, Content-Type, Accept"
   );
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", true);
   next();
 });
 
 let allowedOrigins = ["http://localhost:1234"];
+console.log(allowedOrigins);
+console.log("cors test");
+console.log(cors);
 
 app.use(
   cors({
@@ -221,6 +219,7 @@ app.post(
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password);
+
     Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
       .then(user => {
         if (user) {
