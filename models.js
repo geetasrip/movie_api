@@ -32,14 +32,14 @@ userSchema.statics.hashPassword = password => {
 
 userSchema.methods.validatePassword = function(password) {
   console.log("heroku main");
-  //return bcrypt.compareSync(password, this.Password);
-  if (password.trim() === this.Password.trim()) {
-    return true;
-  }
-  return false;
-  {
-    // your code
-  }
+  return bcrypt.compareSync(password, this.Password);
+  // if (password.trim() === this.Password.trim()) {
+  //   return true;
+  // }
+  // return false;
+  // {
+  //   // your code
+  // }
 };
 
 let Movie = mongoose.model("Movie", movieSchema);
