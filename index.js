@@ -293,9 +293,6 @@ app.put(
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password);
-    console.log("in user update method**************************");
-    console.log("req.body", req.body);
-    console.log("req.body", req.params);
     Users.findOneAndUpdate(
       { Username: req.params.Username },
       {
@@ -374,7 +371,7 @@ app.delete(
 //DELETE a user by their username
 app.delete(
   "/users/:Username",
-  passport.authenticate("jwt", { session: false }),
+  //passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Users.findOneAndUpdate({ Username: req.params.Username })
       .then(user => {
