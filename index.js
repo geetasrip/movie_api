@@ -218,8 +218,10 @@ app.post(
             Birthday: req.body.Birthday
           })
             .then(user => {
+              console.log("user", user.toJSON());
               console.log("user created generating token");
               let token = generateJWTToken(user.toJSON());
+              console.log("generated token", token);
               return res.json({ user, token });
             })
             .catch(error => {
@@ -291,12 +293,15 @@ app.put(
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password);
+    console.log("in user update method**************************");
+    console.log("req.body", req.body);
+    console.log("req.body", req.params);
     Users.findOneAndUpdate(
       { Username: req.params.Username },
       {
         $set: {
           Username: req.body.Username,
-          Password: req.body.Password,
+          Password: hashedPassword,
           Email: req.body.Email,
           Birthday: req.body.Birthday
         }
