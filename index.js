@@ -41,17 +41,24 @@ const whitelist = [
   "http://localhost:1234",
   "https://pensive-kalam-cc4095.netlify.app/"
 ];
-const corsOptions = {
-  origin: function(origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: function(origin, callback) {
+//     if (!origin || whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+//   credentials: true
+// };
+
+app.use(
+  cors({
+    origin: "*"
+  })
+);
+
+//app.use(cors(corsOptions));
 
 let auth = require("./auth")(app);
 const passport = require("passport");
