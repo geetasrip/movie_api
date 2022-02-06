@@ -37,7 +37,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const cors = require("cors");
 
-const whitelist = ["http://localhost:1234"];
+const whitelist = [
+  "http://localhost:1234",
+  "https://pensive-kalam-cc4095.netlify.app/"
+];
 const corsOptions = {
   origin: function(origin, callback) {
     if (!origin || whitelist.indexOf(origin) !== -1) {
