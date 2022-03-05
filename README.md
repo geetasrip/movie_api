@@ -1,5 +1,8 @@
 # Movie details Restful API 
 
+Developed a restful movie api to provide all CRUD funtionalites and also ability to add movies to user
+profile.
+
 # Technologies Used
 * nodejs
 * mongodb
